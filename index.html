@@ -10,7 +10,6 @@
       content="Upload kleding en genereer AI modelfoto’s met 10 gratis monthly credits."
     />
 
-    <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -36,39 +35,28 @@
       };
     </script>
 
-    <!-- Fonts + CSS -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
-
-    <!-- Importmap: Explicitly defined versions (React 18, Firebase 10) from esm.sh -->
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-    "react/jsx-dev-runtime": "https://esm.sh/react@18.2.0/jsx-dev-runtime",
-    "firebase/app": "https://esm.sh/firebase@10.8.0/app",
-    "firebase/auth": "https://esm.sh/firebase@10.8.0/auth",
-    "firebase/analytics": "https://esm.sh/firebase@10.8.0/analytics",
-    "lucide-react": "https://esm.sh/lucide-react@0.263.1?deps=react@18.2.0,react-dom@18.2.0",
-    "@revenuecat/purchases-js": "https://esm.sh/@revenuecat/purchases-js@12.2.0?bundle&deps=react@18.2.0,react-dom@18.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@revenuecat/purchases-js": "https://aistudiocdn.com/@revenuecat/purchases-js@^1.19.0"
   }
 }
 </script>
-  </head>
+</head>
 
   <body class="bg-white text-slate-900 font-['Inter'] antialiased">
     <div id="root"></div>
 
-    <!-- React entrypoint -->
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

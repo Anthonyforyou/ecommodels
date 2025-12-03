@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "lucide-react": "0.263.1",
-    "@revenuecat/purchases-js": "12.2.0",
-    "firebase": "^12.6.0"
+    "react": "^19.2.1",
+    "firebase": "^12.6.0",
+    "react-dom": "^19.2.1",
+    "lucide-react": "^0.555.0",
+    "@revenuecat/purchases-js": "^1.19.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
