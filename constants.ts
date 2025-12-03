@@ -15,7 +15,8 @@ export const PLANS: Plan[] = [
     ]
   },
   {
-    id: "plan_premium",
+    // Updated ID to match RevenueCat Identifier
+    id: "Premium_montly", 
     name: PlanType.PREMIUM,
     price: 199,
     creditsIncluded: 300,

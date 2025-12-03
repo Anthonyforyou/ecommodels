@@ -47,30 +47,39 @@ export const purchaseSubscription = async (
 
     const purchases = Purchases.getSharedInstance();
     const offerings = await purchases.getOfferings();
-    const currentOffering = offerings.current;
+    
+    // Logic: Look for 'current' offering first, then try to find 'Premium' offering specifically
+    // based on user input that the offering is named 'Premium'.
+    let offering = offerings.current;
+    
+    if (!offering && offerings.all["Premium"]) {
+        offering = offerings.all["Premium"];
+        console.log("Using specific 'Premium' offering as Current was null");
+    }
 
-    if (!currentOffering || currentOffering.availablePackages.length === 0) {
-      console.warn("Geen current offering of packages gevonden in RevenueCat");
+    if (!offering || offering.availablePackages.length === 0) {
+      console.warn("Geen geldige offering of packages gevonden in RevenueCat. Controleer of de Offering 'Premium' heet in het Dashboard.");
+      console.log("Available Offerings Keys:", Object.keys(offerings.all));
       return false;
     }
 
-    // Robust finding logic: checks rcBillingProduct (Web Billing) OR product (Stripe/Legacy)
-    const pkg = currentOffering.availablePackages.find((p: any) => {
+    // Robust finding logic: matches the identifier passed from constants.ts (Premium_montly)
+    const pkg = offering.availablePackages.find((p: any) => {
       const productIdentifier = p.rcBillingProduct?.identifier || p.product?.identifier;
       return productIdentifier === planIdentifier;
     });
       
     if (!pkg) {
-        console.error("Geen matching package gevonden voor", planIdentifier);
+        console.error("Geen matching package gevonden voor ID:", planIdentifier);
         // Debug info
-        const availableIds = currentOffering.availablePackages.map((p: any) => 
+        const availableIds = offering.availablePackages.map((p: any) => 
           p.rcBillingProduct?.identifier || p.product?.identifier || "unknown"
         );
-        console.log("Beschikbare pakketten:", availableIds);
+        console.log("Beschikbare pakketten in deze offering:", availableIds);
         return false;
     }
 
-    console.log("Start aankoop voor:", pkg.identifier);
+    console.log("Start aankoop voor package:", pkg.identifier);
 
     // Use purchasePackage for Web SDK
     const { customerInfo } = await purchases.purchasePackage(pkg);
